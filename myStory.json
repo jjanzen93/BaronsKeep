@@ -1,0 +1,161 @@
+{
+    "Title": "Mystery of Baron's Keep",
+    "Credits": "Created by Jack Janzen (jjanzen@ucsc.edu). System created by Adam Smith (amsmith@ucsc.edu).",
+    "InitialLocation": "Entry Hall",
+    "Locations": {
+        "Entry Hall": {
+            "Body": "You stand in a dusty entrance hall to an old museum. There are rotting bodies, some in blue cloaks, some in purple. All of them are holding knives and swords, whether in their hands or in their guts. To your right, there's a sign that says 'Gift Shop'. To your left, there's a sign that says 'Exhibits'. There's a sign on each staircase that says 'Office'. ",
+            "Choices": [
+                {
+                    "Text": "Left",
+                    "Target": "Makeshift Dormitory"
+                },
+                {
+                    "Text": "Up",
+                    "Target": "Office"
+                },
+                {
+                    "Text": "Right",
+                    "Target": "Storage Room"
+                }
+            ]
+        },
+
+
+        "Makeshift Dormitory": {
+            "Body": "All the exhibits here are moved to the side, glass cases with pickaxes and crystals inside are shattered or covered with tarps. The head of a bust rolls away as you accidentally kick it with your foot. More bodies lay on the ground in here, with one of the blue-cloaked ones in light chain armor with a fancier cloak. Rusty bunks, some with bodies still in them, are scattered througout the room, some toppled.",
+            "Choices": [
+                {
+                    "Text": "Back",
+                    "Target": "Entry Hall"
+                }
+            ],
+            "Conditionals": [
+                {
+                    "Prereq": "NO_HAS_KEY",
+                    "Text": "Investigate the leader's body.",
+                    "Target": "Armored Body"
+                }
+            ]
+        },
+        "Armored Body": {
+            "Body": "The fancier garb indicates some level of superiority. Emblazoned on a leather strap around the wrist is the name 'Captain Resh Talen'. On that finger is a brass ring with a cloudy purple gemstone set in it.",
+            "Choices": [
+                {
+                    "Text": "Take the ring.",
+                    "Target": "Take Ring"
+                },
+                {
+                    "Text": "Back",
+                    "Target": "Makeshift Dormitory"
+                }
+            ]
+        },
+        "Take Ring": {
+            "Body": "You reach for the ring and pull, taking the body's finger off with it. You remove the severed digit and wipe the ring off with your coat. You go to put it away in your coat pocket.",
+            "Effect": "GAIN_KEY",
+            "Choices": [
+                {
+                    "Text": "Put the ring on.",
+                    "Target": "Put on Ring"
+                },
+                {
+                    "Text": "Put the ring away.",
+                    "Target": "Makeshift Dormitory"
+                }
+            ]
+        },
+        "Put on Ring": {
+            "Body": "The ring fits snugly on your finger. For a moment you think you hear someone speak, but you were probably mistaken.",
+            "Choices": [
+                {
+                    "Text": "Take the ring off.",
+                    "Target": "Take off Ring"
+                },
+                {
+                    "Text": "Back",
+                    "Target": "Makeshift Dormitory"
+                }
+            ]
+        },
+        "Take off Ring": {
+            "Body": "Shaken, you pull the ring off and stuff it in your coat pocket.",
+            "Choices": [
+                {
+                    "Text": "Back",
+                    "Target": "Makeshift Dormitory"
+                }
+            ]
+        },
+
+        "Storage Room": {
+            "Body": "The gift shop is filled with rotting supplies; meats, fruits, vegetables, grain. Trinkets and memorabilia have been boxed up and replaced with jars of food that seem dubious in preservation quality.",
+            "ConditionalBody": [
+                {
+                    "Prereq" : "TOGGLED_SWITCH",
+                    "Text": "A panel in the wall has opened up, revealing a large room behind."
+                }
+            ],
+            "Choices": [
+                {
+                    "Text": "Back",
+                    "Target": "Entry Hall"
+                }
+            ],
+            "Conditionals": [
+                {
+                    "Prereq": "TOGGLED_SWITCH",
+                    "Text": "Enter the secret room",
+                    "Target": "Workshop"
+                }
+            ]
+        },
+        "Workshop": {
+            "Body": "The room is covered in a thick layer of dust which rises as you swing open the secret door. It looks to be an artificer's workshop, with broken alchemical flasks on the floor. On the table, there is a set of blueprints for a lock that is opened when near a magic gemstone, as well as oxidized metallic powders and small piles of sulphur. There is a large stone door with a statuette of a hand sticking out of it.",
+            "Choices": [
+                {
+                    "Text": "Back",
+                    "Target": "Storage Room"
+                }
+            ],
+            "Conditionals": [
+                {
+                    "Prereq": "HAS_KEY",
+                    "Text": "Place the ring on the hand.",
+                    "Target": "Library"
+                }
+            ]
+        },
+        "Library": {
+            "Body": "You slide the ring onto the hand. It seems to magically shrink a little, and the stone finger cracks. The circle door rolls off to the side, and inner mechanisms try to stop it. You hear a loud snap and the door continues to roll, shattering the hand as it slides behind the wall. Inside, a library is revealed, along with the secrets of the gemstones here at Baron's Keep!"
+        },
+
+        "Office": {
+            "Body": "A large office spans about the same area as the entry hall. Smashed windows surround the room, and all but one of the bookshelves are rotted away. Papers lie all over the floor, and the carpet is stained where wine bottles were shattered on the ground.",
+            "Choices": [
+                {
+                    "Text": "Back",
+                    "Target": "Entry Hall"
+                }
+            ],
+            "Conditionals": [
+                {
+                    "Prereq": "UNTOGGLED_SWITCH",
+                    "Text": "Examine the bookshelf.",
+                    "Target": "Examine Bookshelf"
+                }
+            ]
+        },
+        "Examine Bookshelf": {
+            "Body": "You tug on a book that looks more pristine than the others. Something clicks behind the wall as you do. Outside of that, nothing here seems out of the ordinary.",
+            "Effect": "TOGGLE_SWITCH",
+            "Choices": [
+                {
+                    "Text": "Back",
+                    "Target": "Office"
+                }
+            ]
+        }
+
+    }
+}
